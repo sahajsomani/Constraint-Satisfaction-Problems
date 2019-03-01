@@ -15,3 +15,4 @@ public class Value<T extends Comparable<T>> implements Comparable<Value<?>> { //
 		return this.instance.compareTo((T) that.getInstance());
 	}
 } // end class
+
