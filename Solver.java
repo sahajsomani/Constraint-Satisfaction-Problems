@@ -13,25 +13,25 @@ public class Solver { // Solver class
 
 	public void setCSP(CSP csp) { this.csp = csp; }
 
-	public void backTrackingSearch() {
+	public int backTrackingSearch() {
 		if (this.completeAssignment()) {
-			return;
+			return 1; 
 		}
 		Variable variable = this.selectUnassignedVariable();
-		System.out.println(variable.getName());
 		Domain domain = variable.getDomain();
 		ArrayList<Value<?>> values = domain.getValuesList();
 		this.amountAssigned++;
 		for (Value<?> value : values) {
 			variable.setValue(value);
+			System.out.println(variable.getName() + " : " + variable.getValue().getInstance() + " : " + this.isConsistent());
 			if (this.isConsistent()) {
-				this.backTrackingSearch();
-			} else {
-				variable.setValue(null);
+				return backTrackingSearch();
 			}
 		}
+		variable.setValue(null);
 		variable.setAssigned(false);
 		this.amountAssigned--;
+		return 0;
 	} // end backtrackingSearch
 
 	private boolean completeAssignment() {
