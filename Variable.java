@@ -27,3 +27,4 @@ public class Variable { // abstract structure of Variable class
 
 	public void setValue(Value<?> value) { this.value = value; }
 } // end class
+ 
