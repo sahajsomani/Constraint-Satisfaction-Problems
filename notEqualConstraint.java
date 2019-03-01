@@ -12,8 +12,10 @@ public class notEqualConstraint extends Constraint {
 			for(int j = i + 1; j < variablesList.size(); j++) {
 				Variable a = variablesList.get(i);
 				Variable b = variablesList.get(j);
-				if(a.getValue().compareTo(b.getValue()) == 1) {
-					return false;
+				if(a.getAssigned() && b.getAssigned()) {
+					if(a.getValue().compareTo(b.getValue()) == 0) {
+						return false;
+					}
 				}
 			}
 		}
