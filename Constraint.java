@@ -14,3 +14,4 @@ public abstract class Constraint { // abstract structure of Constraint class
 	public abstract boolean isSatisfied();
 
 } // end class
+
