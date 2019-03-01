@@ -1,14 +1,16 @@
-public abstract class Constraint {
-  private ArrayList<Variable> variablesList; //names variablesList so that we dont confuse it with the variables in the CSP class
+import java.util.*;
 
-  public Constraint(ArrayList<Variable> variablesList) {
-    this.variablesList = variablesList;
-  } //end constructor
+public abstract class Constraint { // abstract structure of Constraint class
+	private ArrayList<Variable> variablesList; // names variablesList so that we dont confuse it with the variables in CSP class
 
-  public ArrayList<Variable> getVarsList() { return this.variablesList; }
+	public Constraint(ArrayList<Variable> variablesList) {
+		this.variablesList = variablesList;
+	} // end constructor
 
-  public void setVarsList(ArrayList<Variable> variablesList) { this.variablesList = variablesList; }
+	public ArrayList<Variable> getVarsList() { return this.variablesList; }
 
-  public abstract boolean isSatisfied();
+	public void setVarsList(ArrayList<Variable> variablesList) { this.variablesList = variablesList; }
 
-} //end class
+	public abstract boolean isSatisfied();
+
+} // end class
