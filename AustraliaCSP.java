@@ -75,10 +75,16 @@ public class AustraliaCSP extends CSP {
 		variablesList = new ArrayList<Variable>();
 		
 		AustraliaCSP problem = new AustraliaCSP("AustraliaCSP", variables, constraints);
+		
 		Solver solution = new Solver(problem);
-		solution.backTrackingSearch();
-		for(Variable i : problem.getVars()) {
-			System.out.println(i.getName() + " : " + i.getValue().getInstance());
+
+		if(solution.backTrackingSearch()) {
+			System.out.println("Solution: ");
+			for(Variable i : problem.getVars()) {
+				System.out.println(i.getName() + " : " + i.getValue().getInstance());
+			}
+		} else {
+			System.out.println(problem.getName() +  " does not have a solution.");
 		}
 	} // end main method
 } // end AustraliaCSP
