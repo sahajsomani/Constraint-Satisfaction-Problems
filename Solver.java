@@ -13,9 +13,9 @@ public class Solver { // Solver class
 
 	public void setCSP(CSP csp) { this.csp = csp; }
 
-	public int backTrackingSearch() {
+	public boolean backTrackingSearch() {
 		if (this.completeAssignment()) {
-			return 1; 
+			return true; 
 		}
 		Variable variable = this.selectUnassignedVariable();
 		Domain domain = variable.getDomain();
@@ -25,13 +25,17 @@ public class Solver { // Solver class
 			variable.setValue(value);
 			System.out.println(variable.getName() + " : " + variable.getValue().getInstance() + " : " + this.isConsistent());
 			if (this.isConsistent()) {
-				return backTrackingSearch();
+				boolean result = this.backTrackingSearch();
+				if(result) {
+					return result;
+				}
+			} else {
+				variable.setValue(null);
 			}
 		}
-		variable.setValue(null);
 		variable.setAssigned(false);
 		this.amountAssigned--;
-		return 0;
+		return false;
 	} // end backtrackingSearch
 
 	private boolean completeAssignment() {
