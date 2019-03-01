@@ -32,47 +32,47 @@ public class AustraliaCSP extends CSP {
 		variablesList.add(SA);
 		variablesList.add(WA);
 		constraints.add(new notEqualConstraint(variablesList));
-		variablesList.clear();
+		variablesList = new ArrayList<Variable>();
 		
 		variablesList.add(SA);
 		variablesList.add(NT);
 		constraints.add(new notEqualConstraint(variablesList));
-		variablesList.clear();
+		variablesList = new ArrayList<Variable>();
 		
 		variablesList.add(SA);
 		variablesList.add(Q);
 		constraints.add(new notEqualConstraint(variablesList));
-		variablesList.clear();
+		variablesList = new ArrayList<Variable>();
 		
 		variablesList.add(SA);
 		variablesList.add(NSW);
 		constraints.add(new notEqualConstraint(variablesList));
-		variablesList.clear();
+		variablesList = new ArrayList<Variable>();
 		
 		variablesList.add(SA);
 		variablesList.add(V);
 		constraints.add(new notEqualConstraint(variablesList));
-		variablesList.clear();
+		variablesList = new ArrayList<Variable>();
 		
 		variablesList.add(NT);
 		variablesList.add(WA);
 		constraints.add(new notEqualConstraint(variablesList));
-		variablesList.clear();
+		variablesList = new ArrayList<Variable>();
 		
 		variablesList.add(NT);
 		variablesList.add(Q);
 		constraints.add(new notEqualConstraint(variablesList));
-		variablesList.clear();
+		variablesList = new ArrayList<Variable>();
 		
 		variablesList.add(Q);
 		variablesList.add(NSW);
 		constraints.add(new notEqualConstraint(variablesList));
-		variablesList.clear();
+		variablesList = new ArrayList<Variable>();
 		
 		variablesList.add(NSW);
 		variablesList.add(V);
 		constraints.add(new notEqualConstraint(variablesList));
-		variablesList.clear();
+		variablesList = new ArrayList<Variable>();
 		
 		AustraliaCSP problem = new AustraliaCSP("AustraliaCSP", variables, constraints);
 		Solver solution = new Solver(problem);
