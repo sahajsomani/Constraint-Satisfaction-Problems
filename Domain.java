@@ -11,3 +11,4 @@ public class Domain { // abstract structure of Domain class
 
 	public void setValuesList(ArrayList<Value<?>> valuesList) { this.valuesList = valuesList; }
 } // end class
+
