@@ -1,11 +1,13 @@
-public abstract class Domain {
-  private ArrayList<Object implements Comparable> list;
+import java.util.*;
 
-  public Domain(ArrayList<Object implements Comparable> list) {
-    this.list = list;
-  }
+public class Domain { // abstract structure of Domain class
+	private ArrayList<Value<?>> valuesList;
 
-  public ArrayList<Object implements Comparable> getList() { return this.list; }
+	public Domain(ArrayList<Value<?>> valuesList) {
+		this.valuesList = valuesList;
+	} // end constructor
 
-  public void setList(ArrayList<Object implements Comparable>) { this.list = list; }
-} //end class
+	public ArrayList<Value<?>> getValuesList() { return this.valuesList; }
+
+	public void setValuesList(ArrayList<Value<?>> valuesList) { this.valuesList = valuesList; }
+} // end class
