@@ -6,7 +6,32 @@ public class AustraliaCSP extends CSP {
 		super(name, variables, constraints);
 	} // end constructor
 
+	static class notEqualConstraint extends Constraint {
+
+		public notEqualConstraint(ArrayList<Variable> variablesList) {
+			super(variablesList);
+		} // end constructor
+
+		public boolean isSatisfied() {
+			ArrayList<Variable> variablesList = this.getVarsList();
+			for(int i = 0; i < variablesList.size(); i++) {
+				for(int j = i + 1; j < variablesList.size(); j++) {
+					Variable a = variablesList.get(i);
+					Variable b = variablesList.get(j);
+					if(a.getAssigned() && b.getAssigned()) {
+						if(a.getValue().compareTo(b.getValue()) == 0) {
+							return false;
+						}
+					}
+				}
+			}
+			return true;
+		} // end isSatisfied
+
+	} // end class
+	
 	public static void main(String[] args) {
+		System.out.println("This is Australia map problem.");
 		ArrayList<Value<?>> valuesList = new ArrayList<Value<?>>();
 		valuesList.add(new Value<String>("Red"));
 		valuesList.add(new Value<String>("Green"));
@@ -75,7 +100,6 @@ public class AustraliaCSP extends CSP {
 		variablesList = new ArrayList<Variable>();
 		
 		AustraliaCSP problem = new AustraliaCSP("AustraliaCSP", variables, constraints);
-		
 		Solver solution = new Solver(problem);
 
 		if(solution.backTrackingSearch()) {
