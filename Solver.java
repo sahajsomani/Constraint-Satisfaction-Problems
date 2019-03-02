@@ -31,7 +31,7 @@ public class Solver { // Solver class
 				}
 			} else {
 				variable.setValue(null);
-			}
+			} 
 		}
 		variable.setAssigned(false);
 		this.amountAssigned--;
