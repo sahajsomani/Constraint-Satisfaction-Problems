@@ -85,9 +85,8 @@ public class JobSchedulingCSP extends CSP {
 		
 		Variable inspect = new Variable("inspect", domain);
 		inspect.setAssigned(true);
-//		Integer temp = 28;
-//		Value<Integer> twentyEight = temp;
-//		inspect.setValue(twentyEight);
+		Value<Integer> twentyEight = new Value<Integer>(28);
+		inspect.setValue(twentyEight);
 		variables.add(inspect);
 		
 		
