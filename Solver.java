@@ -23,7 +23,7 @@ public class Solver { // Solver class
 		this.amountAssigned++;
 		for (Value<?> value : values) {
 			variable.setValue(value);
-			System.out.println(variable.getName() + " : " + variable.getValue().getInstance() + " : " + this.isConsistent());
+//			System.out.println(variable.getName() + " : " + variable.getValue().getInstance() + " : " + this.isConsistent());
 			if (this.isConsistent()) {
 				boolean result = this.backTrackingSearch();
 				if(result) {
