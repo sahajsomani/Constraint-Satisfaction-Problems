@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class JobSchedulingCSP extends CSP {
 
@@ -18,22 +18,23 @@ public class JobSchedulingCSP extends CSP {
 		
 		public void setDiff(int diff) { this.diff = diff; }
 
-		@Override
 		public boolean isSatisfied() {
 			ArrayList<Variable> variablesList = this.getVarsList();
-			Variable greater = variablesList.get(0);
-			Variable smaller = variablesList.get(1);
-			
-			if(greater.getValue().getInstance() >= ((smaller.getValue().getInstance()) + this.diff)) {
-				return true;
-			} else {
-				return false;
+			Variable second = variablesList.get(0);
+			Variable first = variablesList.get(1);
+			if(second.getAssigned() && first.getAssigned()) {
+				if((int)second.getValue().getInstance() >= (((int)(first.getValue().getInstance()) + this.diff))) {
+					return true;
+				} else {
+					return false;
+				}
 			}
+			return true;
 		} //end isSatisfied
 	} //end greaterThanConstraint
 	
 	public static void main(String[] args) {
-		System.out.println("This is Australia map problem.");
+		System.out.println("This is the job scheduling problem.");
 		ArrayList<Value<?>> valuesList = new ArrayList<Value<?>>();
 		for(int i = 1; i < 28; i++) {
 			valuesList.add(new Value<Integer>(i));
@@ -89,14 +90,14 @@ public class JobSchedulingCSP extends CSP {
 		inspect.setValue(twentyEight);
 		variables.add(inspect);
 		
-		
 		ArrayList<Constraint> constraints = new ArrayList<Constraint>();
 		ArrayList<Variable> variablesList = new ArrayList<Variable>();
-		variablesList.add(wheelRF);
-		variablesList.add(axleF);
 		Integer diff10 = 10;
 		Integer diff1 = 1;
 		Integer diff2 = 2;
+		
+		variablesList.add(wheelRF);
+		variablesList.add(axleF);
 		constraints.add(new greaterThanConstraint(variablesList, diff10));
 		variablesList = new ArrayList<Variable>();
 		
@@ -155,15 +156,16 @@ public class JobSchedulingCSP extends CSP {
 		constraints.add(new greaterThanConstraint(variablesList, diff2));
 		variablesList = new ArrayList<Variable>();
 		
-		variablesList.add(axleF);
 		variablesList.add(axleB);
+		variablesList.add(axleF);
 		constraints.add(new greaterThanConstraint(variablesList, diff10));
 		variablesList = new ArrayList<Variable>();
 		
 		JobSchedulingCSP problem = new JobSchedulingCSP("JobSchedulingCSP", variables, constraints);
 		Solver solution = new Solver(problem);
-
-		if(solution.backTrackingSearch()) {
+		
+		boolean check = solution.backTrackingSearch();
+		if(check) {
 			System.out.println("Solution: ");
 			for(Variable i : problem.getVars()) {
 				System.out.println(i.getName() + " : " + i.getValue().getInstance());
