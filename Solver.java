@@ -7,6 +7,11 @@ public class Solver { // Solver class
 	public Solver(CSP csp) {
 		this.csp = csp;
 		this.amountAssigned = 0;
+		for(Variable x : csp.getVars()) {
+			if(x.getAssigned()) {
+				this.amountAssigned++;
+			}
+		}
 	} // end constructor
 
 	public CSP getCSP() { return this.csp; }
@@ -23,7 +28,6 @@ public class Solver { // Solver class
 		this.amountAssigned++;
 		for (Value<?> value : values) {
 			variable.setValue(value);
-//			System.out.println(variable.getName() + " : " + variable.getValue().getInstance() + " : " + this.isConsistent());
 			if (this.isConsistent()) {
 				boolean result = this.backTrackingSearch();
 				if(result) {
