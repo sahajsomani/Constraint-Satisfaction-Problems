@@ -1,16 +1,16 @@
 import java.util.*;
 
-public class Queens8CSP extends CSP {
+public class Queens8CSP extends CSP { // 8Queens problem CSP. running the main method returns the solution to the problem if it exists
 	
 	public Queens8CSP(String name, ArrayList<Variable> variables, ArrayList<Constraint> constraints) {
 		super(name, variables, constraints);
-	}
+	} // end constructor
 	
-	static class notAttackingConstraint extends Constraint {
+	static class notAttackingConstraint extends Constraint { // specific constraint
 		
 		public notAttackingConstraint(ArrayList<Variable> variablesList) {
 			super(variablesList);
-		}
+		} // end constructor
 		
 		public boolean isSatisfied() {
 			ArrayList<Variable> variablesList = this.getVarsList();
@@ -26,10 +26,10 @@ public class Queens8CSP extends CSP {
 				}
 			}
 			return true;
-		}
-	}
+		} // end isSatisfied
+	} // end the constraint
 	
-	static class Location implements Comparable<Location> {
+	static class Location implements Comparable<Location> { // class that will go into the value class
 		private int x;
 		private int y;
 		
@@ -56,9 +56,9 @@ public class Queens8CSP extends CSP {
 			if(Math.abs(this.getX() - that.getX()) == Math.abs(this.getY() - that.getY())) { return 0; }
 			return 1;
 		}
-	}
+	} // end location
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) { // main method
 		System.out.println("This is 8 Queens problem.");
 		System.out.print("Please enter the amount of Queens: ");
 		Scanner scanner = new Scanner(System.in);
@@ -78,7 +78,7 @@ public class Queens8CSP extends CSP {
 		}
 		constraints.add(new notAttackingConstraint(variables));
 		Queens8CSP problem = new Queens8CSP("Queens8CSP", variables, constraints);
-		Solver solution = new Solver(problem);
+		Solver solution = new Solver(problem); // solution
 		
 		if(solution.backTrackingSearch()) {
 			System.out.println("Solution: ");
@@ -88,5 +88,5 @@ public class Queens8CSP extends CSP {
 		} else {
 			System.out.println(problem.getName() +  " does not have a solution.");
 		}
-	}
-}
+	} // end main method
+} // end 8Queens problem
