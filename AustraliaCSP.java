@@ -1,12 +1,13 @@
 import java.util.*;
 
-public class AustraliaCSP extends CSP {
+public class AustraliaCSP extends CSP { // AustraliaCSP class contains the defintion for Australia problem. 
+	//running the main method returns the solution to the problem
 
 	public AustraliaCSP(String name, ArrayList<Variable> variables, ArrayList<Constraint> constraints) {
 		super(name, variables, constraints);
 	} // end constructor
 
-	static class notEqualConstraint extends Constraint {
+	static class notEqualConstraint extends Constraint { // Australia specific constraint
 
 		public notEqualConstraint(ArrayList<Variable> variablesList) {
 			super(variablesList);
@@ -30,14 +31,14 @@ public class AustraliaCSP extends CSP {
 
 	} // end class
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) { // main method... problem definitions and initialization
 		System.out.println("This is Australia map problem.");
-		ArrayList<Value<?>> valuesList = new ArrayList<Value<?>>();
-		valuesList.add(new Value<String>("Red"));
+		ArrayList<Value<?>> valuesList = new ArrayList<Value<?>>(); // list of values
+		valuesList.add(new Value<String>("Red")); 
 		valuesList.add(new Value<String>("Green"));
 		valuesList.add(new Value<String>("Blue"));
 		Domain domain = new Domain(valuesList);
-		ArrayList<Variable> variables = new ArrayList<Variable>();
+		ArrayList<Variable> variables = new ArrayList<Variable>(); // list of variables
 		Variable WA = new Variable("WA", domain);
 		variables.add(WA);
 		Variable NT = new Variable("NT", domain);
@@ -52,7 +53,7 @@ public class AustraliaCSP extends CSP {
 		variables.add(SA);
 		Variable T = new Variable("T", domain);
 		variables.add(T);
-		ArrayList<Constraint> constraints = new ArrayList<Constraint>();
+		ArrayList<Constraint> constraints = new ArrayList<Constraint>(); // list of constraints
 		ArrayList<Variable> variablesList = new ArrayList<Variable>();
 		variablesList.add(SA);
 		variablesList.add(WA);
@@ -100,9 +101,9 @@ public class AustraliaCSP extends CSP {
 		variablesList = new ArrayList<Variable>();
 		
 		AustraliaCSP problem = new AustraliaCSP("AustraliaCSP", variables, constraints);
-		Solver solution = new Solver(problem);
+		Solver solution = new Solver(problem); // solver
 
-		if(solution.backTrackingSearch()) {
+		if(solution.backTrackingSearch()) { // printing the solution
 			System.out.println("Solution: ");
 			for(Variable i : problem.getVars()) {
 				System.out.println(i.getName() + " : " + i.getValue().getInstance());
